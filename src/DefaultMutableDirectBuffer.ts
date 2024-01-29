@@ -105,7 +105,7 @@ export class DefaultMutableDirectBuffer implements MutableDirectBuffer {
             //todo: implement bounds check for MutableDirectBuffer
             // BufferUtil.boundsCheck(dst, offset, length);
 
-            dst.putBytesWithOffset(offset, this._buffer, index, length);
+            dst.putBytes(offset, this._buffer, index, length);
         }
     }
 
@@ -238,41 +238,6 @@ export class DefaultMutableDirectBuffer implements MutableDirectBuffer {
     public putBytes(
         index: number,
         src: number[] | DirectBuffer | Uint8Array,
-        length: number,
-        byteOrder?: ByteOrder,
-    ): void {
-        BufferUtil.boundsCheck(this._buffer, index, length);
-
-        if (Array.isArray(src)) {
-            this.putBytesFromNumberArrayWitOffset(
-                index,
-                src as number[],
-                0,
-                length,
-                byteOrder,
-            );
-        } else if (src instanceof Uint8Array) {
-            this.putBytesFromUint8ArrayWithOffset(
-                index,
-                src as Uint8Array,
-                0,
-                length,
-                byteOrder,
-            );
-        } else {
-            this.putBytesFromDirectBufferWithOffset(
-                index,
-                src as DirectBuffer,
-                0,
-                length,
-                byteOrder,
-            );
-        }
-    }
-
-    public putBytesWithOffset(
-        index: number,
-        src: number[] | Uint8Array | DirectBuffer,
         offset: number,
         length: number,
         byteOrder?: ByteOrder,
@@ -358,7 +323,7 @@ export class DefaultMutableDirectBuffer implements MutableDirectBuffer {
         );
     }
 
-    public putStringWithoutLengthAscii(index: number, value: string): void {
+    public putString(index: number, value: string): void {
         BufferUtil.boundsCheck(this._buffer, index, value.length);
         this.putStringInBuffer(this._buffer, index, value);
     }
@@ -402,11 +367,11 @@ export class DefaultMutableDirectBuffer implements MutableDirectBuffer {
     }
 
     getShortFromBuffer(
-        buffer: Uint8Array,
+        _buffer: Uint8Array,
         index: number,
         byteOrder: ByteOrder = ByteOrder.LITTLE_ENDIAN,
     ): number {
-        const view = new DataView(buffer.buffer, index, BitUtil.SIZE_OF_SHORT);
+        const view = new DataView(_buffer.buffer, index, BitUtil.SIZE_OF_SHORT);
         return view.getInt16(0, byteOrder === ByteOrder.LITTLE_ENDIAN);
     }
 
@@ -421,11 +386,11 @@ export class DefaultMutableDirectBuffer implements MutableDirectBuffer {
     }
 
     getFloatFromBuffer(
-        _buffer: Uint8Array,
+        buffer: Uint8Array,
         index: number,
         byteOrder: ByteOrder = ByteOrder.LITTLE_ENDIAN,
     ): number {
-        const view = new DataView(_buffer.buffer, index, BitUtil.SIZE_OF_FLOAT);
+        const view = new DataView(buffer.buffer, index, BitUtil.SIZE_OF_FLOAT);
         return view.getFloat32(0, byteOrder === ByteOrder.LITTLE_ENDIAN);
     }
 
@@ -474,13 +439,13 @@ export class DefaultMutableDirectBuffer implements MutableDirectBuffer {
         buffer.set(encoded, index);
     }
 
-    getByteFromBuffer(_buffer: Uint8Array, index: number): number {
-        const view = new DataView(_buffer.buffer, index, BitUtil.SIZE_OF_BYTE);
+    getByteFromBuffer(buffer: Uint8Array, index: number): number {
+        const view = new DataView(buffer.buffer, index, BitUtil.SIZE_OF_BYTE);
         return view.getUint8(0);
     }
 
-    putByteInBuffer(_buffer: Uint8Array, index: number, value: number): void {
-        const view = new DataView(_buffer.buffer, index, BitUtil.SIZE_OF_BYTE);
+    putByteInBuffer(buffer: Uint8Array, index: number, value: number): void {
+        const view = new DataView(buffer.buffer, index, BitUtil.SIZE_OF_BYTE);
         view.setUint8(0, value);
     }
 }

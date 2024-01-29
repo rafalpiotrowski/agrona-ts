@@ -11,14 +11,8 @@ export interface MutableDirectBuffer extends DirectBuffer {
     putBytes(
         index: number,
         src: number[] | Uint8Array | DirectBuffer,
-        length: number,
-    ): void;
-    putBytesWithOffset(
-        index: number,
-        src: number[] | Uint8Array | DirectBuffer,
         offset: number,
         length: number,
-        byteOrder?: ByteOrder,
     ): void;
-    putStringWithoutLengthAscii(index: number, value: string): void;
+    putString(index: number, value: string): void;
 }
