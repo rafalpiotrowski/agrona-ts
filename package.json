@@ -1,0 +1,26 @@
+{
+  "name": "agrona",
+  "version": "0.1.0",
+  "description": "TypeScript version of agrona DirectBuffer to use with Simple Binary Encoding",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafalpiotrowski/agrona-ts.git"
+  },
+  "keywords": [
+    "SBE",
+    "Simple-Binary-Encoding",
+    "Aeron",
+    "Agrona",
+    "Encoding"
+  ],
+  "author": "Rafał Piotrowski",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/rafalpiotrowski/agrona-ts/issues"
+  },
+  "homepage": "https://github.com/rafalpiotrowski/agrona-ts#readme"
+}
