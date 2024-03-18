@@ -23,10 +23,8 @@ jobs:
         create_tag: "true"
         commit_pattern: "^Release (\\S+)"
         workspace: "."
-        commit_user: "rafalpiotrowski" # if not provided will extract from the repo
         publish_command: "npm" # options are `yarn`, `npm` or `skip`
         # publish_args: "--non-interactive"
-        # commit_email: "" # if not provided will extract from the repo
       env: # More info about the environment variables in the README
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }} # You need to set this in your repo settings
