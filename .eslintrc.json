@@ -21,5 +21,8 @@
     },
     "plugins": ["@typescript-eslint"],
     "rules": {},
-    "ignorePatterns": []
+    "ignorePatterns": [
+        "src/**/*.js",
+        "dist/**/*"
+    ]
 }
