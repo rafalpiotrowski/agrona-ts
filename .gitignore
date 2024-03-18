@@ -1,5 +1,4 @@
 # project ignores
-package-lock.json
 yarn.lock
 
 # Logst
