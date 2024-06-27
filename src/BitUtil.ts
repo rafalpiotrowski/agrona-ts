@@ -299,7 +299,7 @@ export class BitUtil {
      * @return true if the number is a positive power of 2, otherwise false.
      */
     public static isPowerOfTwo(value: number): boolean {
-        return value > 0 && (value & -value) === value;
+        return value > 0 && (value & (~value + 1)) === value;
     }
 
     /**
@@ -309,7 +309,7 @@ export class BitUtil {
      * @return true if the number is a positive power of 2, otherwise false.
      */
     public static isPowerOfTwoBigInt(value: bigint): boolean {
-        return value > BigInt(0) && (value & -value) === value;
+        return value > 0n && (value & (~value + 1n)) === value;
     }
 
     /**
